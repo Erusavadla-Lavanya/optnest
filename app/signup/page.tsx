@@ -278,7 +278,7 @@ export default function SignupPage() {
       {/* Right side - Sign Up form */}
       <div className="w-full md:w-1/2 flex items-center justify-center bg-white">
         <div className="max-w-md w-full p-3">
-          <h1 className="text-2xl font-bold mb-6 text-[#641B2E] text-center">
+          <h1 className="text-2xl font-bold mb-6 text-[#01627d] text-center">
             Sign Up
           </h1>
 
@@ -313,7 +313,7 @@ export default function SignupPage() {
           <button
             onClick={handleSignup}
             disabled={loading}
-            className="w-full bg-[#641B2E] text-white py-2 rounded hover:bg-[#4b1323] disabled:bg-gray-400"
+            className="w-full bg-[#01627d] text-white py-2 rounded hover:bg-[#01627d] disabled:bg-gray-400"
           >
             {loading ? "Processing..." : "Sign Up"}
           </button>
