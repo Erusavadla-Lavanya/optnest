@@ -103,7 +103,7 @@ export default function LoginPage() {
       {/* Right side - Login form */}
       <div className="w-full md:w-1/2 flex items-center justify-center bg-white">
         <div className="max-w-md w-full p-10 border rounded shadow-md">
-          <h1 className="text-2xl font-bold mb-6 text-[#641B2E] text-center">
+          <h1 className="text-2xl font-bold mb-6 text-[#01627d] text-center">
             Log In
           </h1>
 
@@ -129,7 +129,7 @@ export default function LoginPage() {
           <button
             onClick={handleLogin}
             disabled={loading}
-            className="w-full bg-[#641B2E] text-white py-2 rounded hover:bg-[#4b1323] disabled:bg-gray-400"
+            className="w-full bg-[#01627d] text-white py-2 rounded hover:bg-[#01627d] disabled:bg-gray-400"
           >
             {loading ? "Processing..." : "Log In"}
           </button>
