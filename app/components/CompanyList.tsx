@@ -85,7 +85,7 @@ const CompanyList = () => {
     });
 
     const visibleJobs = jobList.filter(
-      (job) => job.applicant_count < 5 || job.has_applied
+      (job) => job.applicant_count <= 5 || job.has_applied
     );
 
     setJobs(visibleJobs);
