@@ -354,11 +354,12 @@ export default function SignupPage() {
     setMessage("");
     setLoading(true);
 
-    try {
+     try {
       const { data: authData, error: authError } = await supabase.auth.signUp({
         email,
         password,
       });
+
 
 
 
