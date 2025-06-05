@@ -355,18 +355,12 @@ export default function SignupPage() {
     setLoading(true);
 
     try {
-      // const { data: authData, error: authError } = await supabase.auth.signUp({
-      //   email,
-      //   password,
-      // });
-
       const { data: authData, error: authError } = await supabase.auth.signUp({
-  email,
-  password,
-  options: {
-    emailRedirectTo: `${window.location.origin}/confirm`, // This works for localhost and production
-  },
-});
+        email,
+        password,
+      });
+
+
 
 
       if (authError) throw authError;
