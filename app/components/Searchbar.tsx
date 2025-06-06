@@ -23,7 +23,7 @@ import { FC } from "react";
 const SearchBar: FC = () => {
   return (
     <div
-      className="w-383 h-150 bg-cover bg-center bg-no-repeat"
+      className="w-379 h-150 bg-cover bg-center bg-no-repeat"
       style={{
         backgroundImage: "url('/image/students.jpg')",
       }}

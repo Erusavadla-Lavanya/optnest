@@ -212,13 +212,13 @@ const Header: FC = () => {
 
   return (
     <header className="bg-white w-full shadow-sm">
-      <nav className="w-full px-4 py-4 lg:px-7 flex flex-col md:flex-row items-center justify-between">
+      <nav className="w-full px-4 py-4 lg:px-3 flex flex-col md:flex-row items-center justify-between">
         {/* Logo & Brand */}
         <div className="flex items-center space-x-4 mb-4 cursor-pointer md:mb-0">
           <img
             src="/image/logo.png"
             alt="OptNest Logo"
-            className="h-10 w-15 object-contain"
+            className="h-10 w-5 object-contain"
           />
           <h1 className="text-2xl font-extrabold italic text-[#00344B] cursor-pointer">
             OptNest
@@ -301,7 +301,7 @@ const Header: FC = () => {
         </div>
 
         {/* Login/Signup Buttons */}
-        <div className="flex items-center space-x-4">
+        {/* <div className="flex items-center space-x-4">
           <button className="bg-[#034C53] py-2 px-5 rounded text-white hover:bg-[#02575f]">
             Log in
           </button>
@@ -311,7 +311,7 @@ const Header: FC = () => {
           >
             Signup
           </button>
-        </div>
+        </div> */}
       </nav>
     </header>
   );

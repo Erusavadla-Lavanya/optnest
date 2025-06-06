@@ -1,16 +1,20 @@
+
 import { NextPage } from "next";
-import Header from "./components/Header";
-import Searchbar from "./components/Searchbar";
+// import Searchbar from "./components/Searchbar";
+// import Header from "./components/Header";
+import SignupPage from "./home/page";
 
 const HomePage: NextPage = () => {
   return (
     <div className="min-h-screen bg-gray-50">
       <main className="">
-        <Header />
-        <Searchbar />
+        {/* <Header />
+        <Searchbar /> */}
+        <SignupPage />
       </main>
     </div>
   );
 };
 
 export default HomePage;
+

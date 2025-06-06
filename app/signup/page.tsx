@@ -217,111 +217,112 @@
 //     </div>
 //   );
 // }
-"use client";
 
-import { useState } from "react";
-import { useRouter } from "next/navigation";
-import { supabase } from "@/lib/supabase";
+// "use client";
 
-export default function SignupPage() {
-  const router = useRouter();
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
-  const [role, setRole] = useState("client");
-  const [message, setMessage] = useState("");
-  const [error, setError] = useState("");
-  const [loading, setLoading] = useState(false);
-  const [showPassword, setShowPassword] = useState(false);
+// import { useState } from "react";
+// import { useRouter } from "next/navigation";
+// import { supabase } from "@/lib/supabase";
 
-  const handleSignup = async () => {
-    setError("");
-    setMessage("");
-    setLoading(true);
+// export default function SignupPage() {
+//   const router = useRouter();
+//   const [email, setEmail] = useState("");
+//   const [password, setPassword] = useState("");
+//   const [role, setRole] = useState("client");
+//   const [message, setMessage] = useState("");
+//   const [error, setError] = useState("");
+//   const [loading, setLoading] = useState(false);
+//   const [showPassword, setShowPassword] = useState(false);
 
-    try {
-      const { data: authData, error: authError } = await supabase.auth.signUp({
-        email,
-        password,
-      });
+//   const handleSignup = async () => {
+//     setError("");
+//     setMessage("");
+//     setLoading(true);
 
-      if (authError) throw authError;
+//     try {
+//       const { data: authData, error: authError } = await supabase.auth.signUp({
+//         email,
+//         password,
+//       });
 
-      const user = authData?.user;
-      if (!user || !user.id || !user.email) {
-        throw new Error("User data missing after signup.");
-      }
+//       if (authError) throw authError;
 
-      const { error: insertError } = await supabase.from("login").insert([
-        {
-          id: user.id,
-          email: user.email,
-          role,
-        },
-      ]);
-      if (insertError) throw insertError;
+//       const user = authData?.user;
+//       if (!user || !user.id || !user.email) {
+//         throw new Error("User data missing after signup.");
+//       }
 
-      setMessage("Signup successful! Please check your email to verify.");
-      router.push("/login");
-    } catch (err: any) {
-      console.error("Signup Error:", err);
-      setError(err.message);
-    } finally {
-      setLoading(false);
-    }
-  };
+//       const { error: insertError } = await supabase.from("login").insert([
+//         {
+//           id: user.id,
+//           email: user.email,
+//           role,
+//         },
+//       ]);
+//       if (insertError) throw insertError;
 
-  return (
-    <div className="min-h-screen flex">
-      {/* Left side - Background image */}
-      <div className="w-1/2 bg-[url('/image/student-8732859_1280.png')] bg-cover bg-center hidden md:block" />
+//       setMessage("Signup successful! Please check your email to verify.");
+//       router.push("/home");
+//     } catch (err: any) {
+//       console.error("Signup Error:", err);
+//       setError(err.message);
+//     } finally {
+//       setLoading(false);
+//     }
+//   };
 
-      {/* Right side - Sign Up form */}
-      <div className="w-full md:w-1/2 flex items-center justify-center bg-white">
-        <div className="max-w-md w-full p-3">
-          <h1 className="text-2xl font-bold mb-6 text-[#641B2E] text-center">
-            Sign Up
-          </h1>
+//   return (
+//     <div className="min-h-screen flex">
+//       {/* Left side - Background image */}
+//       <div className="w-1/2 bg-[url('/image/student-8732859_1280.png')] bg-cover bg-center hidden md:block" />
 
-          <input
-            type="email"
-            placeholder="Email"
-            value={email}
-            className="w-full p-2 mb-4 border rounded"
-            onChange={(e) => setEmail(e.target.value)}
-          />
+//       {/* Right side - Sign Up form */}
+//       <div className="w-full md:w-1/2 flex items-center justify-center bg-white">
+//         <div className="max-w-md w-full p-3">
+//           <h1 className="text-2xl font-bold mb-6 text-[#01627d] text-center">
+//             Sign Up
+//           </h1>
 
-          {/* Password input with eye toggle */}
-          <div className="relative mb-4">
-            <input
-              type={showPassword ? "text" : "password"}
-              placeholder="Password"
-              value={password}
-              className="w-full p-2 pr-10 border rounded"
-              onChange={(e) => setPassword(e.target.value)}
-            />
-          </div>
+//           <input
+//             type="email"
+//             placeholder="Email"
+//             value={email}
+//             className="w-full p-2 mb-4 border rounded"
+//             onChange={(e) => setEmail(e.target.value)}
+//           />
 
-          <select
-            value={role}
-            onChange={(e) => setRole(e.target.value)}
-            className="w-full p-2 mb-4 border rounded"
-          >
-            <option value="client">Client</option>
-            <option value="freelancer">Freelancer</option>
-          </select>
+//           {/* Password input with eye toggle */}
+//           <div className="relative mb-4">
+//             <input
+//               type={showPassword ? "text" : "password"}
+//               placeholder="Password"
+//               value={password}
+//               className="w-full p-2 pr-10 border rounded"
+//               onChange={(e) => setPassword(e.target.value)}
+//             />
+//           </div>
 
-          <button
-            onClick={handleSignup}
-            disabled={loading}
-            className="w-full bg-[#641B2E] text-white py-2 rounded hover:bg-[#4b1323] disabled:bg-gray-400"
-          >
-            {loading ? "Processing..." : "Sign Up"}
-          </button>
+//           <select
+//             value={role}
+//             onChange={(e) => setRole(e.target.value)}
+//             className="w-full p-2 mb-4 border rounded"
+//           >
+//             <option value="client">Client</option>
+//             <option value="freelancer">Freelancer</option>
+//           </select>
 
-          {message && <p className="text-green-600 mt-4">{message}</p>}
-          {error && <p className="text-red-600 mt-4">{error}</p>}
-        </div>
-      </div>
-    </div>
-  );
-}
+//           <button
+//             onClick={handleSignup}
+//             disabled={loading}
+//             className="w-full bg-[#01627d] text-white py-2 rounded hover:bg-[#01627d] disabled:bg-gray-400"
+//           >
+//             {loading ? "Processing..." : "Sign Up"}
+//           </button>
+
+//           {message && <p className="text-green-600 mt-4">{message}</p>}
+//           {error && <p className="text-red-600 mt-4">{error}</p>}
+//         </div>
+//       </div>
+//     </div>
+//   );
+// }
