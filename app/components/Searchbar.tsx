@@ -17,6 +17,7 @@
 
 // export default SearchBar;
 
+
 /* components/SearchBar.tsx */
 import { FC } from "react";
 
@@ -28,9 +29,10 @@ const SearchBar: FC = () => {
         backgroundImage: "url('/image/students.jpg')",
       }}
     >
-      <div className="p-4 h-full flex items-center justify-center">
-        <div className="relative w-full">
-          {/* Add search input or content here */}
+      <div className="px-4 sm:px-6 lg:px-8 h-full flex items-center justify-center">
+        <div className="relative w-full max-w-3xl">
+          {/* You can add a search input below */}
+          
         </div>
       </div>
     </div>

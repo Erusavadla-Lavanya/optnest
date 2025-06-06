@@ -200,15 +200,15 @@
 
 
 
-
 "use client";
 import { useRouter } from "next/navigation";
-import { FC } from "react";
+import { FC, useState } from "react";
 import { useUserRole } from "../hooks/useUserRole";
 
 const Header: FC = () => {
   const router = useRouter();
   const { role, loading } = useUserRole();
+  const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
 
   return (
     <header className="bg-white w-full shadow-sm">
@@ -225,11 +225,11 @@ const Header: FC = () => {
           </h1>
         </div>
 
-        {/* Navigation Links */}
-        <div className="hidden md:flex items-center space-x-15">
+        {/* Desktop Menu */}
+        <div className="hidden md:flex items-center space-x-8 mt-4 md:mt-0">
           {/* Our Services Dropdown */}
           <div className="relative group">
-            <button className="flex items-center cursor-pointer text-gray-700 hover:text-[#01627d] transition-colors">
+            <button className="flex items-center text-gray-700 hover:text-[#01627d] transition-colors">
               Our Services
               <svg
                 className="ml-1 h-4 w-4"
@@ -241,7 +241,7 @@ const Header: FC = () => {
                 <path strokeLinecap="round" strokeLinejoin="round" d="M19 9l-7 7-7-7" />
               </svg>
             </button>
-            <div className="absolute z-10 hidden group-hover:block bg-white mt-2 cursor-pointer rounded-md shadow-lg w-48">
+            <div className="absolute z-10 hidden group-hover:block bg-white mt-2 rounded-md shadow-lg w-48">
               <ul className="py-2">
                 {["Web Development", "Graphic Design", "Content Writing", "Digital Marketing"].map(service => (
                   <li key={service}>
@@ -257,45 +257,33 @@ const Header: FC = () => {
             </div>
           </div>
 
-          {/* Find Work Mega Menu */}
+          {/* Find Work Dropdown */}
           <div className="relative group">
             <button className="text-gray-700 hover:text-[#034C53] transition-colors">
               Find Work
             </button>
             <div className="absolute left-1/2 top-full mt-2 w-[800px] bg-white shadow-lg rounded-md p-6 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200 z-10 transform -translate-x-1/2">
-              <div className="grid grid-cols-2 md:grid-cols-4 cursor-pointer gap-6">
-                <div>
-                  <h3 className="font-semibold text-sm mb-1">Ways to earn</h3>
-                  <p className="text-sm text-gray-600">Learn why OptNest has the right opportunities for you.</p>
-                </div>
-                <div>
-                  <h3 className="font-semibold text-sm mb-1">Find work for your skills</h3>
-                  <p className="text-sm text-gray-600">Explore the kind of work available in your field.</p>
-                </div>
-                <div>
-                  <h3 className="font-semibold text-sm mb-1">Win work with ads</h3>
-                  <p className="text-sm text-gray-600">Get noticed by the right client.</p>
-                </div>
-                <div>
-                  <h3 className="font-semibold text-sm mb-1">Join OPT NEST</h3>
-                  <p className="text-sm text-gray-600">Get more Connects and insights.</p>
-                </div>
+              <div className="grid grid-cols-2 md:grid-cols-4 gap-6">
+                {[
+                  { title: "Ways to earn", desc: "Learn why OptNest has the right opportunities for you." },
+                  { title: "Find work for your skills", desc: "Explore the kind of work available in your field." },
+                  { title: "Win work with ads", desc: "Get noticed by the right client." },
+                  { title: "Join OPT NEST", desc: "Get more Connects and insights." },
+                ].map((item, index) => (
+                  <div key={index}>
+                    <h3 className="font-semibold text-sm mb-1">{item.title}</h3>
+                    <p className="text-sm text-gray-600">{item.desc}</p>
+                  </div>
+                ))}
               </div>
             </div>
           </div>
 
-          {/* Other Links */}
-          <button
-            onClick={() => router.push("/jobs")}
-            className="text-gray-700 hover:text-[#034C53] transition-colors cursor-pointer"
-          >
+          <button onClick={() => router.push("/jobs")} className="text-gray-700 hover:text-[#034C53] transition-colors">
             Find Jobs
           </button>
 
-          <button
-            onClick={() => router.push("/post-job")}
-            className="text-gray-700 hover:text-[#034C53] transition-colors cursor-pointer"
-          >
+          <button onClick={() => router.push("/post-job")} className="text-gray-700 hover:text-[#034C53] transition-colors">
             Post Jobs
           </button>
         </div>
@@ -307,7 +295,7 @@ const Header: FC = () => {
           </button>
           <button
             onClick={() => router.push("/signup")}
-            className="bg-[#034C53] py-2 px-5 rounded text-white hover:bg-[#02575f] cursor-pointer"
+            className="bg-[#034C53] py-2 px-5 rounded text-white hover:bg-[#02575f]"
           >
             Signup
           </button>
@@ -318,4 +306,3 @@ const Header: FC = () => {
 };
 
 export default Header;
-
